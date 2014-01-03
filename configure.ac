@@ -64,6 +64,14 @@ libadmesh.pc
 AC_OUTPUT
 
 # ==============================================
+# Python bindings
+# ==============================================
+AX_PKG_SWIG(2.0.0)
+AM_PATH_PYTHON(2.6)
+AX_SWIG_PYTHON
+
+
+# ==============================================
 # Display final informations about configuration
 # ==============================================
 AC_MSG_NOTICE([
