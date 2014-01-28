@@ -181,7 +181,7 @@ stl_write_off(stl_file *stl, char *file)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
   
   fprintf(fp, "OFF\n");
@@ -219,7 +219,7 @@ stl_write_vrml(stl_file *stl, char *file)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
   
   fprintf(fp, "#VRML V1.0 ascii\n\n");
@@ -271,7 +271,7 @@ void stl_write_obj (stl_file *stl, char *file) {
         sprintf(error_msg, "stl_write_ascii: Couldn't open %s for writing", file);
         perror(error_msg);
         free(error_msg);
-        exit(1);
+        return;
     }
     
     for (i = 0; i < stl->stats.shared_vertices; i++) {

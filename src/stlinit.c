@@ -86,7 +86,7 @@ stl_count_facets(stl_file *stl, char *file)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
   /* Find size of file */
   fseek(stl->fp, 0, SEEK_END);
@@ -97,7 +97,7 @@ stl_count_facets(stl_file *stl, char *file)
   if (!fread(chtest, sizeof(chtest), 1, stl->fp))
   {
     perror("The input is an empty file");
-    exit(1);
+    return;
   }
   stl->stats.type = ascii;
   for(s = 0; s < sizeof(chtest); s++)
@@ -122,7 +122,7 @@ stl_count_facets(stl_file *stl, char *file)
 	 || (file_size < STL_MIN_FILE_SIZE))
 	{
 	  fprintf(stderr, "The file %s has the wrong size.\n", file);
-	  exit(1);
+	  return;
 	}
       num_facets = (file_size - HEADER_SIZE) / SIZEOF_STL_FACET;
 
@@ -278,7 +278,7 @@ stl_read(stl_file *stl, int first_facet, int first)
             + fread(&facet.extra, sizeof(char), 2, stl->fp) != 6)
 	  {
 	    perror("Cannot read facet");
-	    exit(1);
+	    return;
 	  }
 	}
       else
@@ -293,7 +293,7 @@ stl_read(stl_file *stl, int first_facet, int first)
 	     fscanf(stl->fp, "%*s")) != 12)
 	  {
 	    perror("Something is syntactically very wrong with this ASCII STL!");
-	    exit(1);
+	    return;
 	  }
 	}
       /* Write the facet into memory. */

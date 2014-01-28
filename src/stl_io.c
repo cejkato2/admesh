@@ -146,7 +146,7 @@ stl_write_ascii(stl_file *stl, const char *file, const char *label)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
   
   fprintf(fp, "solid  %s\n", label);
@@ -192,7 +192,7 @@ stl_print_neighbors(stl_file *stl, char *file)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
 
   for(i = 0; i < stl->stats.number_of_facets; i++)
@@ -266,7 +266,7 @@ stl_write_binary(stl_file *stl, const char *file, const char *label)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
 
   fprintf(fp, "%s", label);
@@ -366,7 +366,7 @@ stl_write_quad_object(stl_file *stl, char *file)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
 
   connect_color.x = 0.0;
@@ -442,7 +442,7 @@ stl_write_dxf(stl_file *stl, char *file, char *label)
 	      file);
       perror(error_msg);
       free(error_msg);
-      exit(1);
+      return;
     }
   
   fprintf(fp, "999\n%s\n", label);
